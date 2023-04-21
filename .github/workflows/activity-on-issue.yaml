@@ -3,17 +3,6 @@ on:
     types: [opened]
 
 jobs:
-
-  printJob:    
-    name: Print event
-    runs-on: ubuntu-latest
-    steps:
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: |
-        echo "$GITHUB_CONTEXT"
-
   create-activity:
     runs-on: ubuntu-latest
     steps:
