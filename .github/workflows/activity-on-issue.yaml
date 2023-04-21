@@ -1,0 +1,23 @@
+on:
+  issues:
+    types: [opened]
+
+jobs:
+
+  printJob:    
+    name: Print event
+    runs-on: ubuntu-latest
+    steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: |
+        echo "$GITHUB_CONTEXT"
+
+  create-activity:
+    runs-on: ubuntu-latest
+    steps:
+    - name: KIMAI API with curl
+      run: |
+        echo ${}
+        curl --location 'https://demo.kimai.org/api/activities' --header 'X-AUTH-USER: susan_super' --header 'X-AUTH-TOKEN: api_kitten' --header 'Content-Type: application/json' --data '{"name": ${{ github.event.issue.title }}, "comment":  "See at GitHub: [#${{ github.event.issue.id }}](${{ github.event.issue.url }})", "project": 2, "visible": true}'
