@@ -19,5 +19,4 @@ jobs:
     steps:
     - name: KIMAI API with curl
       run: |
-        echo ${}
         curl --location 'https://demo.kimai.org/api/activities' --header 'X-AUTH-USER: susan_super' --header 'X-AUTH-TOKEN: api_kitten' --header 'Content-Type: application/json' --data '{"name": ${{ github.event.issue.title }}, "comment":  "See at GitHub: [#${{ github.event.issue.id }}](${{ github.event.issue.url }})", "project": 2, "visible": true}'
